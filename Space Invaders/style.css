@@ -47,7 +47,8 @@ h3 {
 }
 
 .laser {
-    background: url(ressources/laser.png);
+    background-color: orange;
+    background: url(ressources/missile.png);
     background-position: center;
     background-size: contain;
 }

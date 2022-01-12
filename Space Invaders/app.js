@@ -3,6 +3,7 @@ const grid = document.querySelector('.grille')
 let aliensRemoved = []
 let currentShooterIndex = 229
 let width = 20
+let height = 40
 let widthAlien = 1
 
 
@@ -57,10 +58,10 @@ function moveShooterLeftReightUpDown() {
             if (currentShooterIndex % width < width - 1) currentShooterIndex += 1
             break
         case 'ArrowUp':
-            if (currentShooterIndex % width !== 0) currentShooterIndex -= 20
+            if (currentShooterIndex >= 200) currentShooterIndex -= 20
             break
         case 'ArrowDown':
-            if (currentShooterIndex % width < width - 1) currentShooterIndex += 20
+            if (currentShooterIndex <= 220) currentShooterIndex += 20
             break
     }
     squares[currentShooterIndex].classList.add('tireur')
@@ -71,16 +72,17 @@ document.addEventListener('keydown', moveShooterLeftReightUpDown)
 
 /*Mouvement des aliens */
 function moveInvaders() {
-    const leftEdge = alienInvaders[0] % widthAlien === 0
-    const rightEdge = alienInvaders[alienInvaders.length - 1] % widthAlien === width - 1
+
     remove()
 
     for (let i = 0; i < alienInvaders.length; i++) {
         alienInvaders[i] += widthAlien + 1
+
     }
     draw()
 
 }
+/*Vistesse de mouvement des aliens */
 setInterval(moveInvaders, 200)
 
 /*Le tire */
@@ -90,25 +92,30 @@ function shoot(event) {
 
     /*Mouvement du tire qui se deplace de 20 en 20 pour faire un tous droit a l'emplacement du vaiseau */
     function moveLaser() {
-        squares[currentLaserIndex].classList.remove('laser')
-        currentLaserIndex -= width
-        squares[currentLaserIndex].classList.add('laser')
+        if (currentLaserIndex >= 20) {
+            squares[currentLaserIndex].classList.remove('laser');
+            currentLaserIndex -= width
+            squares[currentLaserIndex].classList.add('laser');
             /*Lorsque l'index du tire est contenaire de l'alien alors enlever l'alien et le tire et afficher le boom */
-        if (squares[currentLaserIndex].classList.contains('alien')) {
-            squares[currentLaserIndex].classList.remove('laser')
-            squares[currentLaserIndex].classList.remove('alien')
-            squares[currentLaserIndex].classList.add('boom')
+            if (squares[currentLaserIndex].classList.contains('alien')) {
+                squares[currentLaserIndex].classList.remove('laser')
+                squares[currentLaserIndex].classList.remove('alien')
+                squares[currentLaserIndex].classList.add('boom')
 
-            /*Durée de l'explosion de l'alien */
-            setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 200)
-            clearInterval(laserId)
+                /*Durée de l'explosion de l'alien */
+                setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 200)
+                clearInterval(laserId)
 
-            /*Effacement de l'Alien en l'empechant de se draw */
-            const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
-            aliensRemoved.push(alienRemoved)
+                /*Effacement de l'Alien en l'empechant de se draw */
+                const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
+                aliensRemoved.push(alienRemoved)
 
 
 
+            } else if (currentLaserIndex <= 20) {
+                console.log("oh")
+                squares[currentLaserIndex].classList.remove('laser');
+            }
         }
 
     }
@@ -122,3 +129,18 @@ function shoot(event) {
 }
 
 document.addEventListener('keydown', shoot)
+
+
+
+function StartOrStop(audioFile) {
+    var audie = document.getElementById("myAudio");
+    if (!audie.src || audie.src !== audioFile) audie.src = audioFile;
+    console.log(audie.paused);
+    if (audie.paused == false) {
+        console.log('pause');
+        audie.pause();
+    } else {
+        console.log('play');
+        audie.play();
+    }
+}
