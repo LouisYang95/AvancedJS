@@ -3,7 +3,7 @@ let carteRetourne = false;  //defines a boolean to know if our card is flipped
 let memoire1, memoire2;     //defines var for firstCard and secondCard
 let verouille = false;
 let doublon = 0;
-
+let temps = 0;
 
 randomizeBoard();
 
@@ -41,13 +41,14 @@ function returnCard(){
             suppBoard();
         }, 500);
     }
+    timer();
     victoire(); 
 }
 //--------------------------function to alert us when we win------------------------------//
 
 function victoire(){
     if (doublon >= 6){ //if pair is equal to 6 (we have 12 cards)
-        setTimeout(() => {alert("Vous avez gagné la partie ! \n Bien joué !")
+        setTimeout(() => {alert("Vous avez gagné la partie !" + "\n En " + temps + " secondes" + "\n Bien joué !")
         var btn = document.createElement("Button");
         btn.innerHTML = " Recommencer";
         btn.style.color="strong lightblue";
@@ -75,3 +76,10 @@ function randomizeBoard() {
         card.style.order = Math.floor(Math.random() * 12); //randomize each card order
     });
 };
+
+function timer (){
+    while (doublon <= 6){
+        temps++;
+        return;
+    }
+}
