@@ -43,7 +43,15 @@ h3 {
 }
 
 .boom {
-    background-color: red;
+    background: url(ressources/explo1.png);
+    background-position: center;
+    background-size: contain;
+}
+
+.boom2 {
+    background: url(ressources/explo2.png);
+    background-position: center;
+    background-size: contain;
 }
 
 .laser {

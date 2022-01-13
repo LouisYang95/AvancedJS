@@ -23,7 +23,8 @@ const squares = Array.from(document.querySelectorAll('.grille div'))
 const alienInvaders = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-    40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51
+    40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
+
 ]
 
 /* Dessine les aliens */
@@ -76,14 +77,14 @@ function moveInvaders() {
     remove()
 
     for (let i = 0; i < alienInvaders.length; i++) {
-        alienInvaders[i] += widthAlien + 1
+        alienInvaders[i] += widthAlien
 
     }
     draw()
 
 }
 /*Vistesse de mouvement des aliens */
-setInterval(moveInvaders, 200)
+setInterval(moveInvaders, 1000)
 
 /*Le tire */
 function shoot(event) {
@@ -92,7 +93,9 @@ function shoot(event) {
 
     /*Mouvement du tire qui se deplace de 20 en 20 pour faire un tous droit a l'emplacement du vaiseau */
     function moveLaser() {
-        if (currentLaserIndex >= 20) {
+        if (currentLaserIndex >= 0 && currentLaserIndex <= 19) {
+            squares[currentLaserIndex].classList.remove('laser');
+        } else if (currentLaserIndex > 19) {
             squares[currentLaserIndex].classList.remove('laser');
             currentLaserIndex -= width
             squares[currentLaserIndex].classList.add('laser');
@@ -101,9 +104,13 @@ function shoot(event) {
                 squares[currentLaserIndex].classList.remove('laser')
                 squares[currentLaserIndex].classList.remove('alien')
                 squares[currentLaserIndex].classList.add('boom')
+                setTimeout(() => squares[currentLaserIndex].classList.add('boom2'), 300);
+
+
+
 
                 /*Durée de l'explosion de l'alien */
-                setTimeout(() => squares[currentLaserIndex].classList.remove('boom'), 200)
+                setTimeout(() => squares[currentLaserIndex].classList.remove('boom', 'boom2'), 600)
                 clearInterval(laserId)
 
                 /*Effacement de l'Alien en l'empechant de se draw */
@@ -112,9 +119,6 @@ function shoot(event) {
 
 
 
-            } else if (currentLaserIndex <= 20) {
-                console.log("oh")
-                squares[currentLaserIndex].classList.remove('laser');
             }
         }
 
