@@ -23,3 +23,12 @@ function moveInvaders() {
             results.innerHTML = "GAME OVER";
         }
     }
+
+    if(aliensRemoved.length === alienInvaders.length) {
+        results.innerHTML = "YOU WON"
+        clearInterval(alienInvade)
+    }
+
+}
+
+alienInvade = setInterval(moveInvaders, 90)
