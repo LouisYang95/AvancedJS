@@ -64,4 +64,5 @@ h3 {
     background: url(ressources/missile.png);
     background-position: center;
     background-size: contain;
+    transform: rotateX(180deg);
 }
