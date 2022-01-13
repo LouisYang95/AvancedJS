@@ -1,3 +1,8 @@
+body {
+    background-image: url(ressources/cabine.jpeg);
+    margin: 0;
+}
+
 .grille {
     display: flex;
     flex-wrap: wrap;
@@ -6,8 +11,8 @@
     height: 500px;
     margin: 0 auto;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    background: url(ressources/background-black.png);
-    animation: background-defile 5s linear infinite;
+    background: url(ressources/espace.jpeg);
+    animation: background-defile 20s linear infinite;
 }
 
 @keyframes background-defile {
@@ -59,4 +64,5 @@ h3 {
     background: url(ressources/missile.png);
     background-position: center;
     background-size: contain;
+    transform: rotateX(180deg);
 }
