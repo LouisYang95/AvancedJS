@@ -5,6 +5,9 @@ let currentShooterIndex = 229
 let width = 20
 let height = 40
 let widthAlien = 1
+let invadersId
+const resultasDisplay = document.querySelector('.resultas')
+
 
 
 
@@ -80,11 +83,24 @@ function moveInvaders() {
         alienInvaders[i] += widthAlien
 
     }
+
     draw()
 
+    if (squares[currentShooterIndex].classList.contains('alien', 'tireur')) {
+        resultasDisplay.innerHTML = 'GAME OVER'
+        clearInterval(invadersId)
+    } else if (aliensRemoved.length === alienInvaders.length) {
+        resultasDisplay.innerHTML = 'YOU WIN'
+        clearInterval(invadersId)
+
+    }
+
 }
+
 /*Vistesse de mouvement des aliens */
-setInterval(moveInvaders, 1000)
+invadersId = setInterval(moveInvaders, 700)
+
+
 
 /*Le tire */
 function shoot(event) {
@@ -127,10 +143,12 @@ function shoot(event) {
     switch (event.keyCode) {
         case 32:
             /*Interval du deplacement des tires */
-            laserId = setInterval(moveLaser, 200);
+            laserId = setInterval(moveLaser, 350);
             break;
     }
 }
+
+
 
 document.addEventListener('keydown', shoot)
 
