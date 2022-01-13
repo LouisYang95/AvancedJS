@@ -6,7 +6,8 @@ let width = 20
 let height = 40
 let widthAlien = 1
 let invadersId
-const resultasDisplay = document.querySelector('.resultas')
+    /*const resultasDisplay = document.querySelector('.resultas')*/
+let results = document.createElement('resulat');
 var avancer = 0;
 var direction = 1;
 let WallRight = [19, 39, 59, 79, 99, 119, 139, 159, 179, 199, 219, 239, 259]
@@ -29,6 +30,7 @@ const squares = Array.from(document.querySelectorAll('.grille div'))
 
 /* tableau des emplacements de base des aliens */
 const alienInvaders = [
+
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
     40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
@@ -117,14 +119,35 @@ function moveInvaders() {
 
 
     if (squares[currentShooterIndex].classList.contains('alien', 'tireur')) {
-        resultasDisplay.innerHTML = 'GAME OVER'
+        console.log("game over")
         clearInterval(invadersId)
-    } else if (aliensRemoved.length === alienInvaders.length) {
-        resultasDisplay.innerHTML = 'YOU WIN'
-        clearInterval(invadersId)
-
+        results.innerHTML = "GAME OVER";
+        document.body.appendChild(results);
+        setTimeout(lossAlert, 2000);
     }
 
+    for (let i = 0; i < alienInvaders.length; i++) {
+        if (alienInvaders[i] >= 220 && alienInvaders[i] <= 240) {
+            clearInterval(invadersId)
+            results.innerHTML = "GAME OVER";
+            document.body.appendChild(results);
+            setTimeout(lossAlert, 2000);
+        }
+    }
+
+    if (aliensRemoved.length === alienInvaders.length) {
+        results.innerHTML = "YOU WIN"
+        clearInterval(invadersId)
+        console.log("ca marche tqt")
+    }
+
+}
+
+function lossAlert() {
+    alert("VOUS AVEZ PERDU LA PARTIE");
+    if (confirm("Voulez-vous recommencer ?")) {
+        window.location.reload();
+    }
 }
 
 /*Vistesse de mouvement des aliens */
