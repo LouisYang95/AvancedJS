@@ -55,7 +55,7 @@ body {
 }
 .arriere {
   /* background: #333; */
-  background-image: url(ressources/background.jpeg);
+  background-image: url(ressources/background.png);
   display: flex;
   justify-content: center;
   align-items: center;
