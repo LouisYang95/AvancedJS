@@ -15,8 +15,7 @@ const clap = document.getElementById("claps");
 const check = document.getElementById("check");
 
 randomizeBoard();
-music.play();
-music.volume= 0.6;
+bgSound();
 carte.forEach(card => card.addEventListener('click', returnCard));  //each time we click on the card
 
 //---------------------------- Function to flip our card ----------------------//
@@ -62,11 +61,7 @@ function returnCard(){
 
 function victoire(){
     if (doublon >= 6){ //if pair is equal to 6 (we have 12 cards)
-        win.play();
-        win.volume= 0.2;
-        music.pause();
-        clap.play();
-        clap.volume = 0.2;
+        winSound();
         setTimeout(() => {alert("Vous avez gagné la partie !" + "\n En " + temps + " secondes" + "\n Bien joué !")
         var btn = document.createElement("Button");
         btn.innerHTML = " Recommencer";
@@ -106,4 +101,16 @@ function timer (){
         temps++;
         return;
     }
+}
+function winSound(){
+    win.play();
+    win.volume= 0.2;
+    music.pause();
+    clap.play();
+    clap.volume = 0.2;
+}
+
+function bgSound(){
+    music.play();
+    music.volume= 0.6;
 }
