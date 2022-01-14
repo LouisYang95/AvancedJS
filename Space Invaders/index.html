@@ -10,17 +10,27 @@
 
 <body>
 
-    <h3>Score :</h3>
+    <div class="score">Score :
+        <h3 class="results">0</h3>
+    </div>
     <div class="grille">
-        <button class="button" onmousedown="play.play()" onclick="  start  (this)">start</button>
+        <button class="button" mousedown="play.play()" onclick="  start  (this)">start</button>
 
     </div>
-
+    <button1 class="button1">Recommencer</button1>
     <script src="app.js"></script>
 
 
 
     <audio id="myAudio" src="audio/song.mp3"></audio>
+
+    <audio id="shootAudio" src="audio/shoot.mp3"></audio>
+
+    <audio id="explodeAudio" src="audio/invaderkilled.mp3"></audio>
+
+    <audio id="death" src="audio/explosion.mp3"></audio>
+
+    <audio id="aliens" src="audio/alien.mp3"></audio>
 
 
 

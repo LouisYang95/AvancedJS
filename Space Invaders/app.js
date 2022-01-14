@@ -25,6 +25,13 @@ function game() {
     let WallRight = [19, 39, 59, 79, 99, 119, 139, 159, 179, 199, 219, 239, 240]
     let WallDown = [220, 221, 222, 223, 224, 225, 226, 227, 228, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239]
     let canShoot = true;
+    let destroyedAudio = document.getElementById("explodeAudio");
+    let audioDeath = document.getElementById("death");
+    let audioShoot = document.getElementById("shootAudio");
+    let audioAlien = document.getElementById("aliens");
+
+    audioShoot.play();
+    audioShoot.volume = 0.05;
 
 
 
@@ -98,6 +105,8 @@ function game() {
         remove();
 
         if (avancer == 0) { // aller a gauche
+            audioAlien.play();
+            audioAlien.volume = 0.05;
             for (let i = 0; i < alienInvaders.length; i++) {
                 alienInvaders[i] += widthAlien;
                 // console.log(aliensRemoved.includes(i));
@@ -109,6 +118,8 @@ function game() {
                 }
             }
         } else if (avancer == 1) { // aller a droite
+            audioAlien.play();
+            audioAlien.volume = 0.05;
             for (let i = 0; i < alienInvaders.length; i++) {
                 alienInvaders[i] -= widthAlien;
                 if (alienInvaders[i] % 20 == 0 && !aliensRemoved.includes(i)) {
@@ -117,6 +128,8 @@ function game() {
                 }
             }
         } else if (avancer == 2) { // s'arreter
+            audioAlien.play();
+            audioAlien.volume = 0.05;
             for (let i = 0; i < alienInvaders.length; i++) {
                 alienInvaders[i] += widthAlien + 19;
             }
@@ -126,9 +139,12 @@ function game() {
                 avancer = 0;
             }
         }
+
         draw();
 
         if (squares[currentShooterIndex].classList.contains('alien', 'tireur')) {
+            audioDeath.play();
+            audioDeath.volume = 0.05;
             clearInterval(invadersId)
             setTimeout(lossAlert, 500);
         }
@@ -176,6 +192,8 @@ function game() {
                     squares[currentLaserIndex].classList.remove('alien')
                     squares[currentLaserIndex].classList.add('boom')
                     setTimeout(() => squares[currentLaserIndex].classList.add('boom2'), 300);
+                    destroyedAudio.play();
+                    destroyedAudio.volume = 0.05;
 
 
 
@@ -199,6 +217,8 @@ function game() {
             case 32:
                 /*Interval du deplacement des tires */
                 laserId = setInterval(moveLaser, 350);
+                audioShoot.play();
+                audioShoot.volume = 0.05;
                 break;
         }
     }
