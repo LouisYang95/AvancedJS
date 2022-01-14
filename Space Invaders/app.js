@@ -10,6 +10,11 @@ function start(x) {
     audio.play();
 }
 
+function Recommencer() {
+    window.location.reload();
+
+}
+
 function game() {
 
     /*Déclarations de variable */
@@ -17,14 +22,12 @@ function game() {
     let aliensRemoved = []
     let currentShooterIndex = 229
     let width = 20
-    let height = 40
     let widthAlien = 1
     let invadersId
     var avancer = 0;
     var direction = 1;
     let WallRight = [19, 39, 59, 79, 99, 119, 139, 159, 179, 199, 219, 239, 240]
-    let WallDown = [220, 221, 222, 223, 224, 225, 226, 227, 228, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239]
-    let canShoot = true;
+    results = 0;
     let destroyedAudio = document.getElementById("explodeAudio");
     let audioDeath = document.getElementById("death");
     let audioShoot = document.getElementById("shootAudio");
@@ -165,6 +168,8 @@ function game() {
             setTimeout(WinAlert, 500);
         }
 
+
+
     }
 
 
@@ -205,6 +210,12 @@ function game() {
                     /*Effacement de l'Alien en l'empechant de se draw */
                     const alienRemoved = alienInvaders.indexOf(currentLaserIndex)
                     aliensRemoved.push(alienRemoved)
+                    results++
+                    document.getElementById("resultas").innerHTML = results;
+
+
+
+
 
 
 
@@ -230,16 +241,14 @@ function game() {
 
     function lossAlert() {
         alert("VOUS AVEZ PERDU LA PARTIE");
-        if (confirm("Voulez-vous recommencer ?")) {
-            window.location.reload();
-        }
+
     }
 
     function WinAlert() {
         alert("VOUS AVEZ GAGNE LA PARTIE");
-        if (confirm("Voulez-vous recommencer ?")) {
-            window.location.reload();
-        }
+
     }
+
+
 
 }
