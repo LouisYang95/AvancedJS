@@ -74,7 +74,7 @@ h4 {
     transform: rotateX(180deg);
 }
 
-button {
+.button1 {
     margin-left: 36%;
     margin-top: 40%;
     height: 75px;
@@ -93,7 +93,7 @@ button {
     box-shadow: 0px -0px 0px 0px rgba(143, 64, 248, .5), 0px 0px 0px 0px rgba(39, 200, 255, .5);
 }
 
-button::after {
+.button1::after {
     content: '';
     width: 400px;
     height: 400px;
@@ -105,18 +105,16 @@ button::after {
     transition: all .5s;
 }
 
-button:hover::after {
+.button1:hover::after {
     transform: rotate(150deg);
 }
 
-button:hover {
+.button1:hover {
     transform: translate(0, -6px);
     box-shadow: 10px -10px 25px 0px rgba(143, 64, 248, .25), -10px 10px 25px 0px rgba(39, 200, 255, .25);
 }
 
-.button1 {
-    height: 75px;
-    width: 148px;
+.button2 {
     padding: 20px 50px;
     font-size: 1.5rem;
     cursor: pointer;
@@ -130,7 +128,7 @@ button:hover {
     box-shadow: 0px -0px 0px 0px rgba(143, 64, 248, .5), 0px 0px 0px 0px rgba(39, 200, 255, .5);
 }
 
-.button1::after {
+.button2::after {
     content: '';
     width: 400px;
     height: 400px;
@@ -142,11 +140,11 @@ button:hover {
     transition: all .5s;
 }
 
-.button1:hover::after {
+.button2:hover::after {
     transform: rotate(150deg);
 }
 
-.button1:hover {
+.button2:hover {
     transform: translate(0, -6px);
     box-shadow: 10px -10px 25px 0px rgba(143, 64, 248, .25), -10px 10px 25px 0px rgba(39, 200, 255, .25);
 }
