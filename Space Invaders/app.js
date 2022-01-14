@@ -1,3 +1,4 @@
+/*fonction pour le lancement du jeux et de la musique d'ambiance */
 function start(x) {
 
     x.style.display = 'none';
@@ -10,11 +11,13 @@ function start(x) {
     audio.play();
 }
 
+/*fonction pour le boutton recommencer*/
 function Recommencer() {
     window.location.reload();
 
 }
 
+/*fonction qui regroupe tous le jeu */
 function game() {
 
     /*Déclarations de variable */
@@ -33,8 +36,7 @@ function game() {
     let audioShoot = document.getElementById("shootAudio");
     let audioAlien = document.getElementById("aliens");
 
-    audioShoot.play();
-    audioShoot.volume = 0.05;
+
 
 
 
@@ -80,6 +82,7 @@ function game() {
 
     squares[currentShooterIndex].classList.add('tireur')
 
+
     /* fonction du mouvement l'atérale et horizontal du joueur "left , right , Up et Down" du joueur */
     function moveShooterLeftReightUpDown() {
         squares[currentShooterIndex].classList.remove('tireur')
@@ -100,9 +103,10 @@ function game() {
         squares[currentShooterIndex].classList.add('tireur')
     }
 
+    /*Si l'une des touche est enfoncé "down" alors il execute la fonction moveShooterLeftReightUpDown  */
     document.addEventListener('keydown', moveShooterLeftReightUpDown)
 
-
+    /*fonction du mouvement des aliens */
     function moveInvaders() {
 
         remove();
@@ -112,7 +116,6 @@ function game() {
             audioAlien.volume = 0.05;
             for (let i = 0; i < alienInvaders.length; i++) {
                 alienInvaders[i] += widthAlien;
-                // console.log(aliensRemoved.includes(i));
                 for (let y = 0; y < WallRight.length; y++) {
                     if (alienInvaders[i] == WallRight[y] && !aliensRemoved.includes(i)) {
                         avancer = 2;
@@ -145,13 +148,14 @@ function game() {
 
         draw();
 
+        /*Lorsque qu'un Alien percute le tireur (meme case) alors la game est perdue + pop up */
         if (squares[currentShooterIndex].classList.contains('alien', 'tireur')) {
             audioDeath.play();
             audioDeath.volume = 0.05;
             clearInterval(invadersId)
             setTimeout(lossAlert, 500);
         }
-
+        /*Lorsque qu'un Alien arrive a la derniere ligne alors la game est perdue + pop up */
         for (let i = 0; i < alienInvaders.length; i++) {
             if (alienInvaders[i] >= 220 && alienInvaders[i] <= 240) {
                 clearInterval(invadersId)
@@ -162,7 +166,7 @@ function game() {
 
             }
         }
-
+        /*Lorsque le tireur detruit tous les aliens alors la game est gagne + pop up */
         if (aliensRemoved.length === alienInvaders.length) {
             clearInterval(invadersId)
             setTimeout(WinAlert, 500);
@@ -234,16 +238,17 @@ function game() {
         }
     }
 
+    /*Si l'une des touche est enfoncé "down" alors il execute la fonction shoot  */
 
     document.addEventListener('keydown', shoot);
 
 
-
+    /*fonction pour la pop up de vous avez perdu la partie */
     function lossAlert() {
         alert("VOUS AVEZ PERDU LA PARTIE");
 
     }
-
+    /*fonction pour la pop up de vous avez gagne la partie */
     function WinAlert() {
         alert("VOUS AVEZ GAGNE LA PARTIE");
 
