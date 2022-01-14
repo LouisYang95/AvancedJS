@@ -9,16 +9,18 @@
 </head>
 
 <body>
-    <h1 class="resultas"></h1>
+
     <h3>Score :</h3>
-    <div class="grille"></div>
+    <div class="grille">
+        <button class="button" onmousedown="play.play()" onclick="  start  (this)">start</button>
+
+    </div>
 
     <script src="app.js"></script>
 
 
-    <img src="ressources/play.png" alt="Play Button" width="57" height="50" onclick="StartOrStop('audio/song.mp3')">
 
-    <audio id="myAudio"></audio>
+    <audio id="myAudio" src="audio/song.mp3"></audio>
 
 
 
