@@ -178,7 +178,7 @@ function game() {
 
 
     /*Vistesse de mouvement des aliens */
-    invadersId = setInterval(moveInvaders, 100)
+    invadersId = setInterval(moveInvaders, 600)
 
 
 
@@ -200,7 +200,7 @@ function game() {
                     squares[currentLaserIndex].classList.remove('laser')
                     squares[currentLaserIndex].classList.remove('alien')
                     squares[currentLaserIndex].classList.add('boom')
-                    setTimeout(() => squares[currentLaserIndex].classList.add('boom2'), 300);
+                    setTimeout(() => squares[currentLaserIndex].classList.add('boom2'), 200);
                     destroyedAudio.play();
                     destroyedAudio.volume = 0.05;
 
@@ -208,7 +208,7 @@ function game() {
 
 
                     /*Durée de l'explosion de l'alien */
-                    setTimeout(() => squares[currentLaserIndex].classList.remove('boom', 'boom2'), 600)
+                    setTimeout(() => squares[currentLaserIndex].classList.remove('boom', 'boom2'), 400)
                     clearInterval(laserId)
 
                     /*Effacement de l'Alien en l'empechant de se draw */
@@ -231,7 +231,7 @@ function game() {
         switch (event.keyCode) {
             case 32:
                 /*Interval du deplacement des tires */
-                laserId = setInterval(moveLaser, 350);
+                laserId = setInterval(moveLaser, 400);
                 audioShoot.play();
                 audioShoot.volume = 0.05;
                 break;
